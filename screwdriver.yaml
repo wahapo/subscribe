@@ -8,4 +8,8 @@ jobs:
     image: node:10
     steps:
       - ls
-      - printenv
+      - init: |
+          SDLOCAL_VERSION=`meta get sd.release.name | sed s/^v//`
+          echo $SDLOCAL_VERSION
+          wget "https://github.com/screwdriver-cd/sd-local/releases/download/v${SDLOCAL_VERSION}/sd-local_${SDLOCAL_VERSION}_checksums.txt" -O $SD_ARTIFACTS_DIR/checksums.txt
+          cat $SD_ARTIFACTS_DIR/checksums.txt
