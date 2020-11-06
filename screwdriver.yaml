@@ -1,0 +1,11 @@
+subscribe:
+  scmUrls:
+    - git@github.com:wahapo/subscribe-2.git: [ ~release ]
+  
+jobs:
+  main:
+    requires: [ ~pr, ~commit, ~subscribe ]
+    image: node:10
+    steps:
+      - ls
+      - printenv
